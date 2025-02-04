@@ -1,0 +1,12 @@
+{
+  "name": "api-rest-js-practico",
+  "version": "1.0.0",
+  "description": "Curso  practico de  Consumo de API REST con JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "CarlosAvella",
+  "license": "MIT"
+}

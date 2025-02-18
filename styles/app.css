@@ -1,4 +1,4 @@
-/* General */
+
 * { box-sizing: border-box; }
 
 :root {
@@ -88,26 +88,67 @@ button {
 }
 
 
-/* Shared */
-.header-container, .trendingPreview-header, .categoriesPreview-container {
+
+.header-container, .trendingPreview-header, .categoriesPreview-container, .liked-header {
   padding: 0 24px;
 }
 
-.trendingPreview-container, .categoriesPreview-container, footer {
+.trendingPreview-container, .categoriesPreview-container, .liked-container, footer {
   margin-top: 48px;
 }
 
-.trendingPreview-header, .categoriesPreview-title {
+.trendingPreview-header, .categoriesPreview-title, .liked-header {
   margin-bottom: 24px;
 }
 
 .movie-container {
   cursor: pointer;
+  position: relative;
+}
+.movie-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+.movie-container--loading:nth-child(2) {
+  animation-delay: .2s;
+}
+.movie-container--loading:nth-child(3) {
+  animation-delay: .4s;
 }
 
 .movie-img {
   border-radius: 8px;
   min-height: 175px; 
+}
+ 
+.movie-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  height: 30px;
+  width: 30px;
+  border-radius: 30px;
+  padding: 0;
+  margin: 0;
+}
+.movie-btn::before {
+  content: '🤍';
+
+}
+.movie-btn--liked {
+  background-color: var(--purple-light-2);
+  box-shadow: 0px 0px 10px 2px var(--purple-dark-1);
+}
+.movie-btn--liked::before {
+  content: '💜';
 }
 
 .categoriesPreview-list, .categories-list {
@@ -118,8 +159,24 @@ button {
   flex-wrap: wrap;
 }
 
+.category-container--loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+.category-container--loading:nth-child(2) {
+  animation-delay: .2s;
+}
 
-/* Header */
+
+
 .header-container {
   padding-top: 40px;
 }
@@ -174,9 +231,10 @@ button {
   border-bottom-right-radius: 8px;
 }
 
-
 /* Trending */
-.trendingPreview-header {
+
+.trendingPreview-header,
+.liked-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -188,7 +246,8 @@ button {
   width: 72px;
 }
 
-.trendingPreview-movieList {
+.trendingPreview-movieList,
+.liked-movieList {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -197,12 +256,14 @@ button {
   padding-bottom: 16px;
 }
 
-.trendingPreview-movieList .movie-container {
+.trendingPreview-movieList .movie-container,
+.liked-movieList .movie-container {
   display: inline-block;
   margin-right: 8px;
 }
 
-.trendingPreview-movieList .movie-container .movie-img {
+.trendingPreview-movieList .movie-container .movie-img,
+.liked-movieList .movie-container .movie-img {
   height: 225px;
   min-height: 225px;
   max-height: 225px;
@@ -212,7 +273,7 @@ button {
 }
 
 
-/* Categories */
+
 .category-container {
   width: 45%;
 }
@@ -255,8 +316,8 @@ button {
 #id10752 { --idColor: var(--lightBlue); }
 #id37 { --idColor: var(--darkBlue); }
 
-
 /* Generic List (search, trending & category) */
+
 .genericList-container {
   display: flex;
   align-items: center;
@@ -274,8 +335,8 @@ button {
   width: 100%;
 }
 
-
 /* Movie Detail */
+
 .movieDetail-container {
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -325,11 +386,21 @@ button {
   white-space: nowrap;
   width: calc(100vw - 24px);
   padding-bottom: 16px;
+  max-height: 225px;
 }
 
 .relatedMovies-scrollContainer .movie-container {
   display: inline-block;
   margin-right: 8px;
+}
+
+.relatedMovies-scrollContainer .movie-container--loading {
+  width: 125px;
+  min-width: 125px;
+  max-width: 125px;
+  height: 187.5px;
+  min-height: 187.5px;
+  max-height: 187.5px;
 }
 
 .relatedMovies-scrollContainer .movie-img {
@@ -354,7 +425,18 @@ footer {
 }
 
 
-/* Navigation */
+
 .inactive {
   display: none;
+}
+
+
+
+@keyframes loading-skeleton {
+  0%, 100% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
 }
